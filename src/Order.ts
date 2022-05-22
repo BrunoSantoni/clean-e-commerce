@@ -1,5 +1,6 @@
 import { Coupon } from "./Coupon";
 import { Cpf } from "./Cpf";
+import { Freight } from "./Freight";
 import { Item } from "./Item";
 import { OrderItem } from "./OrderItem";
 
@@ -7,18 +8,27 @@ export class Order {
   document: Cpf
   orderItems: OrderItem[]
   coupon?: Coupon
+  freight = new Freight()
 
-  constructor(document: string) {
+  constructor(document: string, readonly date = new Date()) {
     this.document = new Cpf(document)
     this.orderItems = []
   }
 
   addItem(item: Item, quantity: number) {
+    this.freight.addItem(item, quantity)
+
     this.orderItems.push(new OrderItem(item.id, item.price, quantity))
   }
 
   addCoupon(coupon: Coupon) {
-    this.coupon = coupon
+    if(!coupon.isExpired(this.date)) {
+      this.coupon = coupon
+    }
+  }
+
+  getFreight() {
+    return this.freight.getTotal()
   }
 
   getTotal() {
@@ -29,6 +39,8 @@ export class Order {
     if(this.coupon) {
       total -= this.coupon.calculateDiscount(total)
     }
+
+    total += this.getFreight()
 
     return total
   }

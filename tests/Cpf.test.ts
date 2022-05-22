@@ -14,18 +14,3 @@ const wrongSameDigitCpf = [
 it.each(wrongSameDigitCpf)('should invalidate cpfs that are the same digit', function (cpf) {
 	expect(() => new Cpf(cpf)).toThrow(new Error('Invalid document'))
 })
-
-// it('Deve validar um cpf inválido que seja nulo', function () {
-// 	const isValid3 = new Cpf(null)
-// 	expect(isValid3).toBeFalsy()
-// })
-
-// it('Deve validar um cpf válido sem pontos e traços', function () {
-// 	const isValid = new Cpf('93541134780')
-// 	expect(isValid).toBeTruthy()
-// })
-
-// it('Deve validar um cpf válido com alguns pontos', function () {
-// 	const isValid = new Cpf('935.411.34780')
-// 	expect(isValid).toBeTruthy()
-// })

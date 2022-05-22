@@ -1,4 +1,5 @@
 import { Coupon } from "../src/Coupon";
+import { Dimension } from "../src/Dimension";
 import { Item } from "../src/Item";
 import { Order } from "../src/Order";
 
@@ -17,7 +18,7 @@ it('should create an order with three items containing description, price and qu
   expect(total).toBe(2000)
 })
 
-it('should create a discount coupon', function() {
+it('should create an order with discount coupon', function() {
   const order = new Order('935.411.347-80')
   order.addItem(new Item(1, 'Piano Digital', 1800), 1)
   order.addItem(new Item(1, 'Pedal de sustain', 50), 1)
@@ -27,4 +28,29 @@ it('should create a discount coupon', function() {
   const total = order.getTotal()
 
   expect(total).toBe(1800)
+})
+
+it('should create an order with expired discount coupon', function() {
+  const order = new Order('935.411.347-80', new Date('2022-10-01T10:00:00'))
+  order.addItem(new Item(1, 'Piano Digital', 1800), 1)
+  order.addItem(new Item(1, 'Pedal de sustain', 50), 1)
+  order.addItem(new Item(1, 'Suporte em X', 50), 3)
+  order.addCoupon(new Coupon('VALE10', 10, new Date('2022-05-01T10:00:00')))
+
+  const total = order.getTotal()
+
+  expect(total).toBe(2000)
+})
+
+it('should create an order with three items and calculate the freight', function() {
+  const order = new Order('935.411.347-80')
+  order.addItem(new Item(1, 'Piano Digital', 1800, new Dimension(100, 30, 10), 3), 1)
+  order.addItem(new Item(1, 'Pedal de sustain', 50, new Dimension(50, 50, 50), 20), 1)
+  order.addItem(new Item(1, 'Suporte em X', 50, new Dimension(10, 10, 10), 1), 3)
+
+  const freight = order.getFreight()
+  const total = order.getTotal()
+
+  expect(freight).toBe(260)
+  expect(total).toBe(2260)
 })
