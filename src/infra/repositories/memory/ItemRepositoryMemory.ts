@@ -1,5 +1,5 @@
-import { Item } from "./Item";
-import { ItemRepository } from "./ItemRepository";
+import { Item } from "../../../domain/entities/Item";
+import { ItemRepository } from "../../../domain/repositories/ItemRepository";
 
 export class ItemRepositoryMemory implements ItemRepository {
   items: Item[]

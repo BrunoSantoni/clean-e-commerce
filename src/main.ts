@@ -1,8 +1,8 @@
-import { Dimension } from './Dimension'
-import { ExpressAdapter } from './ExpressAdapter'
-import { GetItems } from './GetItems'
-import { Item } from './Item'
-import { ItemRepositoryMemory } from './ItemRepositoryMemory'
+import { Dimension } from './domain/entities/Dimension'
+import { ExpressAdapter } from './infra/http/ExpressAdapter'
+import { GetItems } from './application/GetItems'
+import { Item } from './domain/entities/Item'
+import { ItemRepositoryMemory } from './infra/repositories/memory/ItemRepositoryMemory'
 
 const http = new ExpressAdapter()
 

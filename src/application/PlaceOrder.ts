@@ -1,6 +1,6 @@
-import { ItemRepository } from "./ItemRepository"
-import { Order } from "./Order"
-import { OrderRepository } from "./OrderRepository"
+import { ItemRepository } from "../domain/repositories/ItemRepository"
+import { Order } from "../domain/entities/Order"
+import { OrderRepository } from "../domain/repositories/OrderRepository"
 
 type OrderItem = {
   id: number,

@@ -1,8 +1,8 @@
-import { Dimension } from "../src/Dimension"
-import { Item } from "../src/Item"
-import { ItemRepositoryMemory } from "../src/ItemRepositoryMemory"
-import { OrderRepositoryMemory } from "../src/OrderRepositoryMemory"
-import { PlaceOrder } from "../src/PlaceOrder"
+import { Dimension } from "../../src/domain/entities/Dimension"
+import { Item } from "../../src/domain/entities/Item"
+import { ItemRepositoryMemory } from "../../src/infra/repositories/memory/ItemRepositoryMemory"
+import { OrderRepositoryMemory } from "../../src/infra/repositories/memory/OrderRepositoryMemory"
+import { PlaceOrder } from "../../src/application/PlaceOrder"
 
 // Use case
 // Screaming Architecutre

@@ -1,7 +1,7 @@
-import { Coupon } from "../src/Coupon";
-import { Dimension } from "../src/Dimension";
-import { Item } from "../src/Item";
-import { Order } from "../src/Order";
+import { Coupon } from "../../src/domain/entities/Coupon";
+import { Dimension } from "../../src/domain/entities/Dimension";
+import { Item } from "../../src/domain/entities/Item";
+import { Order } from "../../src/domain/entities/Order";
 
 it('should not create an order with an invalid document', function() {
   expect(() => new Order('111.111.111-11')).toThrow(new Error('Invalid document'));

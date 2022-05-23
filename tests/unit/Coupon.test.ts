@@ -1,4 +1,4 @@
-import { Coupon } from "../src/Coupon"
+import { Coupon } from "../../src/domain/entities/Coupon"
 
 it('should create a Coupon', function() {
   const coupon = new Coupon('TEST10', 10)

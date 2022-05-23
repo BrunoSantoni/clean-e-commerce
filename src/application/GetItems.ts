@@ -1,4 +1,4 @@
-import { ItemRepository } from "./ItemRepository";
+import { ItemRepository } from "../domain/repositories/ItemRepository";
 
 type Output = {
   idItem: number,
