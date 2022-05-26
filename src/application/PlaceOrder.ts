@@ -11,10 +11,12 @@ type Input = {
   cpf: string,
   orderItems: OrderItem[],
   coupon?: string
+  date?: Date
 }
 
 type Output = {
-  total: Number
+  total: Number,
+  code: string
 }
 
 // Similar a OrderService / OrderUsecase
@@ -26,7 +28,8 @@ export class PlaceOrder {
   
   // Se fosse OrderService o método poderia se chamar placeOrder ou saveOrder
   async execute(input: Input): Promise<Output> {
-    const order = new Order(input.cpf)
+    const sequence = await this.orderRepository.count() + 1
+    const order = new Order(input.cpf, input.date, sequence)
     
     for(const orderItem of input.orderItems) {
       const item = await this.itemRepository.get(orderItem.id)
@@ -36,7 +39,8 @@ export class PlaceOrder {
     await this.orderRepository.save(order)
 
     return {
-      total: order.getTotal()
+      total: order.getTotal(),
+      code: order.code.value
     }
   }
 }

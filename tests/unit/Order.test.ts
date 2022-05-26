@@ -54,3 +54,14 @@ it('should create an order with three items and calculate the freight', function
   expect(freight).toBe(260)
   expect(total).toBe(2260)
 })
+
+it('should create an order and generate a code following the pattern YYYYPPPPPPPP', () => {
+  const order = new Order('935.411.347-80', new Date('2022-05-01T10:00:00'), 1)
+  order.addItem(new Item(1, 'Piano Digital', 1800), 1)
+  order.addItem(new Item(2, 'Pedal de sustain', 50), 1)
+  order.addItem(new Item(3, 'Suporte em X', 50), 3)
+
+  const code = order.code.value
+
+  expect(code).toBe('202200000001')
+})
