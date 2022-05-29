@@ -3,12 +3,13 @@ import { Cpf } from "./Cpf";
 import { Freight } from "./Freight";
 import { Item } from "./Item";
 import { OrderCode } from "./OrderCode";
+import { OrderCoupon } from "./OrderCoupon";
 import { OrderItem } from "./OrderItem";
 
 export class Order {
   document: Cpf
   orderItems: OrderItem[]
-  coupon?: Coupon
+  coupon?: OrderCoupon
   freight = new Freight()
   code: OrderCode
 
@@ -25,9 +26,10 @@ export class Order {
   }
 
   addCoupon(coupon: Coupon) {
-    console.log(coupon.isExpired(this.date))
     if(!coupon.isExpired(this.date)) {
-      this.coupon = coupon
+      // Não pode reter um coupon diretamente pois estaria criando dependência
+      // entre agregados diferentes, por isso criou OrderCoupon
+      this.coupon = new OrderCoupon(coupon.code, coupon.percentage)
     }
   }
 

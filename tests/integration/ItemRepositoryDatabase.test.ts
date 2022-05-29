@@ -8,4 +8,6 @@ it.skip('should return database items', async function() {
   const items = await itemRepository.list()
 
   expect(items).toHaveLength(3)
+
+  await connection.close()
 })

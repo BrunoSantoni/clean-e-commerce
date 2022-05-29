@@ -5,10 +5,6 @@ export class Coupon {
     readonly expirationDate = new Date()
   ) {}
 
-  calculateDiscount(total: number): number {
-    return total * (this.percentage / 100)
-  }
-
   isExpired(today: Date) {
     console.log(today)
     console.log(this.expirationDate)

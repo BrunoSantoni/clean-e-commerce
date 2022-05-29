@@ -12,4 +12,8 @@ export class PgPromiseConnectionAdapter implements Connection {
     return this.pgp.query(statement, params)
   }
 
+  close(): Promise<void> {
+    return this.pgp.$pool.end()
+  }
+
 }
