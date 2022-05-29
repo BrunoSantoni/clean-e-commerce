@@ -25,6 +25,7 @@ export class Order {
   }
 
   addCoupon(coupon: Coupon) {
+    console.log(coupon.isExpired(this.date))
     if(!coupon.isExpired(this.date)) {
       this.coupon = coupon
     }

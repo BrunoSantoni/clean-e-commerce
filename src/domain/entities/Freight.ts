@@ -10,7 +10,6 @@ export class Freight {
   private MINIMUM_FREIGHT = 10
 
   addItem(item: Item, quantity: number) {
-
     const freight = item.getVolume() * this.DISTANCE * (item.getDensity() / this.FACTOR)
     this.total += freight * quantity
   }

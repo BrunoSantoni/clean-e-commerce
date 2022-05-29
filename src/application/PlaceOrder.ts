@@ -1,6 +1,7 @@
 import { ItemRepository } from "../domain/repositories/ItemRepository"
 import { Order } from "../domain/entities/Order"
 import { OrderRepository } from "../domain/repositories/OrderRepository"
+import { CouponRepository } from "../domain/repositories/CouponRepository"
 
 type OrderItem = {
   id: number,
@@ -23,7 +24,8 @@ type Output = {
 export class PlaceOrder {
   constructor(
     readonly itemRepository: ItemRepository,
-    readonly orderRepository: OrderRepository
+    readonly orderRepository: OrderRepository,
+    readonly couponRepository: CouponRepository
   ) {}
   
   // Se fosse OrderService o método poderia se chamar placeOrder ou saveOrder
@@ -34,6 +36,11 @@ export class PlaceOrder {
     for(const orderItem of input.orderItems) {
       const item = await this.itemRepository.get(orderItem.id)
       order.addItem(item, orderItem.quantity)
+    }
+
+    if(input.coupon) {
+      const coupon = await this.couponRepository.get(input.coupon)
+      order.addCoupon(coupon)
     }
 
     await this.orderRepository.save(order)
