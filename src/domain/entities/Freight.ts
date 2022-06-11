@@ -2,7 +2,7 @@ import { Item } from "./Item";
 
 export class Freight {
   // É private pq senão qualquer um de fora poderia levar o objeto de frete a um estado inválido (passando -1 pro total por exemplo)
-  private total = 0
+  total = 0
 
   // Eliminando magic numbers
   private DISTANCE = 1000

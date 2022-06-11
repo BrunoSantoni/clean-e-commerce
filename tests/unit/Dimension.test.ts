@@ -6,3 +6,7 @@ it('should create the dimensions', function() {
 
   expect(volume).toBe(0.03)
 })
+
+it('should throw exception if any dimension is negative', function() {
+  expect(() => new Dimension(-100, 30, 10)).toThrow(new Error('Invalid dimension'))
+})

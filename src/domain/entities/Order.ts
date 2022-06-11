@@ -20,6 +20,9 @@ export class Order {
   }
 
   addItem(item: Item, quantity: number) {
+    if(this.isDuplicated(item)) {
+      throw new Error('Duplicated item')
+    }
     this.freight.addItem(item, quantity)
 
     this.orderItems.push(new OrderItem(item.id, item.price, quantity))
@@ -45,9 +48,13 @@ export class Order {
     if(this.coupon) {
       total -= this.coupon.calculateDiscount(total)
     }
-
+    
     total += this.getFreight()
 
     return total
+  }
+
+  isDuplicated(item: Item) {
+    return this.orderItems.some(orderItem => orderItem.idItem === item.id)
   }
 }

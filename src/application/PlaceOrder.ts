@@ -37,12 +37,12 @@ export class PlaceOrder {
       const item = await this.itemRepository.get(orderItem.id)
       order.addItem(item, orderItem.quantity)
     }
-
+    
     if(input.coupon) {
       const coupon = await this.couponRepository.get(input.coupon)
       order.addCoupon(coupon)
     }
-
+    
     await this.orderRepository.save(order)
 
     return {

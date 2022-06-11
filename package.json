@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest tests",
-    "coverage": "yarn test --coverage"
+    "test": "jest tests --runInBand",
+    "coverage": "yarn test --coverage",
+    "dev": "yarn nodemon src/main.ts"
   },
   "keywords": [],
   "author": "",

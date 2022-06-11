@@ -1,7 +1,7 @@
 import { ItemRepositoryDatabase } from "../../src/infra/repositories/database/ItemRepositoryDatabase"
 import { PgPromiseConnectionAdapter } from "../../src/infra/database/PgPromiseConnectionAdapter"
 
-it.skip('should return database items', async function() {
+it('should return database items', async function() {
   const connection = new PgPromiseConnectionAdapter()
   const itemRepository = new ItemRepositoryDatabase(connection)
   
