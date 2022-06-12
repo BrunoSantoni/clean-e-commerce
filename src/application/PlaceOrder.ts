@@ -2,6 +2,7 @@ import { ItemRepository } from "../domain/repositories/ItemRepository"
 import { Order } from "../domain/entities/Order"
 import { OrderRepository } from "../domain/repositories/OrderRepository"
 import { CouponRepository } from "../domain/repositories/CouponRepository"
+import { RepositoryFactory } from "../domain/factories/RepositoryFactory"
 
 type OrderItem = {
   id: number,
@@ -22,11 +23,15 @@ type Output = {
 
 // Similar a OrderService / OrderUsecase
 export class PlaceOrder {
-  constructor(
-    readonly itemRepository: ItemRepository,
-    readonly orderRepository: OrderRepository,
-    readonly couponRepository: CouponRepository
-  ) {}
+  itemRepository: ItemRepository
+  orderRepository: OrderRepository
+  couponRepository: CouponRepository
+
+  constructor(readonly repositoryFactory: RepositoryFactory) {
+    this.itemRepository = repositoryFactory.createItemRepository()
+    this.orderRepository = repositoryFactory.createOrderRepository()
+    this.couponRepository = repositoryFactory.createCouponRepository()
+  }
   
   // Se fosse OrderService o método poderia se chamar placeOrder ou saveOrder
   async execute(input: Input): Promise<Output> {
