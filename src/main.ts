@@ -6,8 +6,10 @@ import { ItemController } from './infra/controllers/ItemController'
 import { OrderRepositoryDatabase } from './infra/repositories/database/OrderRepositoryDatabase'
 import { OrderController } from './infra/controllers/OrderController'
 import { PgPromiseConnectionAdapter } from './infra/database/PgPromiseConnectionAdapter'
+import { HapiAdapter } from './infra/http/HapiAdapter'
 
 const http = new ExpressAdapter()
+// const http = new HapiAdapter()
 
 const itemRepository = new ItemRepositoryMemory()
 itemRepository.save(new Item(1, 'Piano Digital', 1800, new Dimension(100, 30, 10), 3))

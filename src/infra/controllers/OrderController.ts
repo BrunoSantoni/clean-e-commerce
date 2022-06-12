@@ -15,7 +15,7 @@ export class OrderController {
       return output
     })
 
-    http.on('get', '/order/:code', async function(params: any, body: any) {
+    http.on('get', '/order/{code}', async function(params: any, body: any) {
       const getOrder = new GetOrder(orderRepository)
       const output = await getOrder.execute({ code: params.code })
     
